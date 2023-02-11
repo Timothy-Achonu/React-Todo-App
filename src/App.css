@@ -1,38 +1,187 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #777;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  margin: 20px 0;
+  font-size: 3.3rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.add-todo-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.add-todo-wrapper > input {
+  outline: none;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  width: 300px;
+  height: 70px;
+  font-size: 1.3rem;
+}
+.add-todo-wrapper > button {
+  font-family: sans-serif;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: green;
+  margin-left: 20px;
+  font-size: 1.3rem;
+  height: 50px;
+}
+.add-todo-wrapper > button:hover {
+  background-color: white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul {
+  width: 100%;
+  /* background-color: yellow; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+}
+
+ul li{
+ list-style: none;
+ width: 75% ;
+ display: flex;
+ margin-top: 41px;
+ justify-content: center;
+ /* background-color: yellow; */
+}
+ul li > div {
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* background-color: yellow; */
+  font-size: 1.7rem;
+}
+ul li div:first-child {
+  margin-right: 20px;
+  width: 50%;
+}
+ul li div:first-child .text {
+  min-height: 50px;
+}
+ul li div:first-child .text.complete {
+   text-decoration: line-through;
+}
+ul li div:first-child .text.hide {
+  display: none;
+}
+ul li div:first-child input {
+  display: none;
+}
+ul li div:first-child input.show {
+  display: block;
+  background-color: black;
   color: white;
+  height: 50px;
+  width: 90%;
+  font-size: 1.3rem;
+  padding: 10px;
+}
+ul li div:first-child .num {
+  margin-right: 16px;
+  font-weight: bold;
+}
+ul li button {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  color: red;
+  font-size: 1.2rem;
+}
+ul li button.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.6;
+}
+ul li button:hover {
+  background-color: white;
+}
+ul li .btns-wrapper {
+  margin-left: auto;
+}
+ul li .edit-btn{
+margin-right: 10px;
+color: blue;
+}
+ul li .complete-btn {
+  margin-right: 10px;
+  color: green;
 }
 
-.App-link {
-  color: #61dafb;
+@media (max-width: 500px) {
+  .add-todo-wrapper {
+      flex-direction: column;
+  } 
+  .add-todo-wrapper > input {
+      width: 300px;
+  }
+  .add-todo-wrapper > button {
+      margin: auto;
+      margin-top: 10px;
+      margin-left: auto;
+      width: 80%;
+  }
+  ul li {
+      flex-direction: column;
+      width: 300px;
+      font-size: 1.2rem;
+  }
+  ul li div {
+    width: 100%;
+  }
+  ul li div:first-child {
+    margin-right: 20px;
+    width: 100%;
+  }
+  ul li .btns-wrapper {
+      margin-left: 26px;
+      margin-top: 20px;
+  }
+  ul li .btns-wrapper button {
+    font-size: 1rem;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 300px) {
+  .add-todo-wrapper > input {
+      width: 150px;
   }
-  to {
-    transform: rotate(360deg);
+  .add-todo-wrapper > button {
+      margin: auto;
+      margin-top: 10px;
+      margin-left: auto;
+      width: 80%;
+  }
+  ul li {
+      flex-direction: column;
+      width: 160px;
   }
 }
+
