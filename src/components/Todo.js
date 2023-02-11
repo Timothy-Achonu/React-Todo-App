@@ -1,33 +1,33 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-const Todo = ({ todo, deleteTodo, edit, save }) => {
+const Todo = ({ todo, deleteTodo, edit, save, isChangeMade, setIsChangeMade }) => {
   const [isComplete, setIsComplete] = useState(false);
   const [isEditting, setIsEditting] = useState(false);
-
+  //INPUT REF
+  const inputRef = useRef(null);
   function handleIsComplete() {
     setIsComplete((prev) => {
       return !prev;
     });
   }
   function handleEditting(todo, e) {
-    // edit()
     let inputElement = e.target.parentElement.
     previousSibling.children[2]
+    //INPUT REF FOCUS
+    inputRef.current.focus();
+    console.log(inputRef.current)
     inputElement.value = todo.text
+    // console.log(inputElement, todo.text);
     setIsEditting((prev) => {
       return !prev;
     });
-    if(isEditting) {
-      // console.log('In edit');
+    if(isEditting && isChangeMade) {
+      setIsChangeMade(false)
       save(todo.id);
     }
   }
   return (
     <>
-      {/* 
-      WHEN You CLICK EDIT WHAT SHOULD BE IN THE INPUT SHOULD BE 
-      THE TEXT OF THAT TODO.
-      */}
       <li>
         <div>
           <span className="num">{todo.id + 1}</span>
@@ -38,16 +38,18 @@ const Todo = ({ todo, deleteTodo, edit, save }) => {
           >
             {todo.text}{" "}
           </span>
+          {/* INPUT TO ADD FOCUS */}
           <input 
           type="text" 
+          ref={inputRef}
           className={`${isEditting ? "show" : ""}`} 
           onChange={(e) => edit(todo.id,e)}
-          // value={todo.text}
           />
         </div>
         <div className="btns-wrapper">
+          {/* BUTTON TO ADD FOCUS */}
           <button className="edit-btn" 
-          onClick={(e) => handleEditting(todo,e)}>
+          onClick={(e) =>  handleEditting(todo,e)}>
             {isEditting ? "Save" : "Edit"}
           </button>
           <button

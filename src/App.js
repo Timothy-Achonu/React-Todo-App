@@ -1,25 +1,25 @@
-import { useState } from "react";
+import { useState} from "react";
 import "./App.css";
 import Todo from "./components/Todo";
 
 export default function App() {
   const [Todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState({ text: "", id: null });
+  const [newTodo, setNewTodo] = useState({ text: "", id: 500 });
+  const [isChangeMade, setIsChangeMade] = useState(null)
 
-  function addTodos() {
-    // console.log(Todos)
-    if (newTodo) {
-      // console.log("here.");
+  function addTodos(e) {
+    let inputElement = e.target.previousSibling
+    inputElement.value = ""
+    // console.log(e.target.previousSibling)
+    if (newTodo.text) {
       setTodos((prevTodos) => {
         return [...prevTodos, newTodo];
       });
     }
     setNewTodo({ text: "", id: null });
-    // console.log(Todos);
   }
   function handleInput(e) {
     setNewTodo({ text: e.target.value, id: Todos.length });
-    // console.log(newTodo);
   }
   function deleteTodo(id) {
     // console.log(id);
@@ -33,13 +33,7 @@ export default function App() {
     });
   }
   function editTodo(id, e) {
-    // e.target.value = e.target.value;
-    // Todos.forEach((todo) => {
-    //   if(todo.id = id) {
-    //     e.target.value = todo.text;
-    //   }
-    // })
-    // console.log(e, 'id: ', id);
+    setIsChangeMade(true)
     setNewTodo({ text: e.target.value, id: id });
   }
   function saveEdit(id) {
@@ -62,6 +56,8 @@ export default function App() {
         deleteTodo={deleteTodo}
         edit={editTodo}
         save={saveEdit}
+        isChangeMade={isChangeMade}
+        setIsChangeMade={setIsChangeMade}
         key={index}
       />
     );
@@ -73,9 +69,7 @@ export default function App() {
         <input
           type="text"
           onChange={handleInput}
-          onBlur={(e) => {
-            e.target.value = "";
-          }}
+          placeholder="Enter your todo"
         />
         <button className="add-todo-btn" onClick={addTodos}>
           Add todo
