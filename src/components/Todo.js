@@ -30,7 +30,7 @@ const Todo = ({ todo, deleteTodo, edit, save, isChangeMade, setIsChangeMade }) =
     <>
       <li>
         <div>
-          <span className="num">{todo.id + 1}</span>
+          <span className="num">{todo.id + 1}.</span>
           <span
             className={`text ${isComplete ? "complete" : ""} ${
               isEditting ? "hide" : ""

@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #777;
+  background-color: #000;
   color: white;
   font-family: "Courier New", Courier, monospace;
 }
@@ -164,7 +164,7 @@ ul li .complete-btn {
   }
   ul li .btns-wrapper {
     margin-left: 0px;
-    margin-top: 20px;
+    margin-top: 0px;
   }
   ul li .btns-wrapper button {
     font-size: 1rem;
