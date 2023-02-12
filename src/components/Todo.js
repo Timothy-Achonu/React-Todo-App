@@ -5,19 +5,16 @@ const Todo = ({ todo, deleteTodo, edit, save, isChangeMade, setIsChangeMade }) =
   const [isEditting, setIsEditting] = useState(false);
   //INPUT REF
   const inputRef = useRef(null);
+
   function handleIsComplete() {
     setIsComplete((prev) => {
       return !prev;
     });
   }
-  function handleEditting(todo, e) {
-    let inputElement = e.target.parentElement.
-    previousSibling.children[2]
+  function handleEditting(todo) {
     //INPUT REF FOCUS
     inputRef.current.focus();
-    console.log(inputRef.current)
-    inputElement.value = todo.text
-    // console.log(inputElement, todo.text);
+    inputRef.current.value = todo.text
     setIsEditting((prev) => {
       return !prev;
     });
@@ -25,6 +22,11 @@ const Todo = ({ todo, deleteTodo, edit, save, isChangeMade, setIsChangeMade }) =
       setIsChangeMade(false)
       save(todo.id);
     }
+  }
+  function handleKeyEvent(e) {
+     if(e.key == 'Enter') {
+         handleEditting(todo)
+     }
   }
   return (
     <>
@@ -44,6 +46,7 @@ const Todo = ({ todo, deleteTodo, edit, save, isChangeMade, setIsChangeMade }) =
           ref={inputRef}
           className={`${isEditting ? "show" : ""}`} 
           onChange={(e) => edit(todo.id,e)}
+          onKeyDown={handleKeyEvent}
           />
         </div>
         <div className="btns-wrapper">

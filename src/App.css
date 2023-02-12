@@ -164,7 +164,7 @@ ul li .complete-btn {
   }
   ul li .btns-wrapper {
     margin-left: 0px;
-    margin-top: 0px;
+    margin-top: 10px;
   }
   ul li .btns-wrapper button {
     font-size: 1rem;
